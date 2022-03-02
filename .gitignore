@@ -1,5 +1,9 @@
-.idea
+*~
+venv
 *.pyc
-Qrep/db.sqlite3
+db.sqlite3
 media
 __pycache__
+.DS_Store
+/static
+

@@ -29,7 +29,7 @@
     <header>
         <div class="header_left">
             <button class="homebut">
-                <a href="./main.html" title="Home" class="qrsvg"><img class="logo" src="{% static 'bastama/images/default/QR.jpg' /%}"></a>
+                <a href="{% url 'bastama:home' %}" title="Home" class="qrsvg"><img class="logo" src="{% static 'bastama/images/default/QR.jpg' /%}"></a>
             </button>
             <div class="qazrep">
                 <p>QAZAQ REPUBLIC</p>
@@ -108,7 +108,7 @@
         <pre id="first">Born to be Free</pre>
         </div>
         <div class="sur">
-        <img class="imgg" width="40%" src="./img/qaz.jpg" alt="">
+        <img class="imgg" width="40%" src="{% static 'bastama/images/home/qaz.jpg' %}" alt="">
         </div>
 </div>
 </div>
@@ -290,7 +290,7 @@
             <md-button class="button-md-raised-md-primary" @click="download" style="border: 0.5px solid black; width: 60px;">Send</md-button>
         </div>
     </form>
-    <img src="./img/25.png" alt="" style="width: 40%;">
+    <img src="{% static 'bastama/images/home/25.png' %}" alt="" style="width: 40%;">
 </div>
 
 <div class="subscribe" style="position: relative;height: 280px;">
@@ -321,7 +321,7 @@
         <!-- Copyright -->
         <div class="text-center p-3 text-light" style="background-color: #0045c0;">
           © 2017 Copyright:
-          <a class="text-light" href="main.html">Qazaq Republic - Design: Dollar Bills</a>
+          <a class="text-light" href="{% url 'bastama:home' %}">Qazaq Republic - Design: Dollar Bills</a>
         </div>
         <!-- Copyright -->
       </footer>
