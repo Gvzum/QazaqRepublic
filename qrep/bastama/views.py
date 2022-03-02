@@ -8,3 +8,6 @@ def index(request):
 
 def jeans(request):
     return render(request, 'bastama/jeans.html')
+
+def test(request):
+    return render(request, 'bastama/components/test.html')
