@@ -12,5 +12,17 @@ def jeans(request):
 def jeide(request):
     return render(request, 'bastama/jeide.html')
 
+def qosymsha(request):
+    return render(request, 'bastama/qosymsha.html')
+
+def gift(request):
+    return render(request, 'bastama/gift.html')
+
+def basket(request):
+    return render(request, 'bastama/basket.html')
+
+def search(request):
+    return render(request, 'bastama/search.html')
+
 def test(request):
     return render(request, 'bastama/components/test.html')

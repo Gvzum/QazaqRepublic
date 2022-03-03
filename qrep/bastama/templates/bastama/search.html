@@ -1,0 +1,19 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/search.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+    <div class="content">
+        <form role="search">
+            <input id="search" type="search" placeholder="Search..." />
+            <label id="bt" type="submit" onclick="ch(this)">Go</label>
+        </form>
+
+        <h1 id="h1"></h1>
+    </div>
+{% endblock content %}

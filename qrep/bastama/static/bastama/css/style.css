@@ -823,20 +823,17 @@ header{
 /* Union styles */
 
 .content_blocks {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    grid-gap: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));*/
+    /*grid-gap: 60px;*/
     background-color: #fff;
     font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	color: #0045c0;
 }
 
-@media (max-width: 1200px) {
-    .content_blocks {
-        grid-gap: 20px;
-    }
-}
 
 /*.cardblock{*/
 /*    text-align: center;*/
