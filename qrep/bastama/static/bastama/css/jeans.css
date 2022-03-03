@@ -44,7 +44,7 @@
 
 .content{
 	padding: 40px;
-    background: url("./img/backj.png");
+    background: url("../images/home/backj.png");
     background-size: 4%;
 
 }
@@ -63,27 +63,30 @@
     background-color: #fff;
 
 }
-.rowblock{
-	display: flex;
-	justify-content: space-around;
-	font-family: 'Roboto', sans-serif;
-	font-size: 20px;
-	color: #0045c0;
-    background-color: #fff;
-}
-.cardblock{
 
-    text-align: center;
-    position: relative;
-        display: inline-block;
-        padding-bottom: 10px;
-}
+/* In the style.css file */
+/*.rowblock{*/
+/*	display: flex;*/
+/*	justify-content: space-around;*/
+/*	font-family: 'Roboto', sans-serif;*/
+/*	font-size: 20px;*/
+/*	color: #0045c0;*/
+/*    background-color: #fff;*/
+/*}*/
+/*.cardblock{*/
+
+/*    text-align: center;*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    padding-bottom: 10px;*/
+/*    margin-bottom: 15px;*/
+/*}*/
 
 .imageblock1{
     width: 300px;
-        height: 300px;
-        background: url("./123/jeans/jeans_basic.jpg");
-        background-size: 300px;
+    height: 300px;
+    background: url("./123/jeans/jeans_basic.jpg");
+    background-size: 300px;
 }
 
 .imageblock1:hover{

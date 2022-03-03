@@ -1,0 +1,154 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/jeide.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">Jeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#burj" class="menu__link">Burjeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#kenj" class="menu__link">Kenjeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:jeans' %}" class="menu__link"><span style="color: yellow;">Jeans</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="./qosymsha.html" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="./gift.html" class="menu__link"><span style="color: yellow;">Gift</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#Jeideler</div>
+        <div class="content_blocks">
+            <div class="cardblock">
+                <div class="imageblock1" ></div>
+                <div class="nameelement">KOP SOZ jeide</div>
+                <div class="coastel">8500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock2"></div>
+                <div class="nameelement">BJB jeide</div>
+                <div class="coastel">8500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock3"></div>
+                <div class="nameelement">WRQ jeide</div>
+                <div class="coastel">8500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock4"></div>
+                <div class="nameelement">JUMP jeide</div>
+                <div class="coastel">8500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+
+        </div>
+
+        <div class="nameblock" >#Burjeideler</div>
+        <div class="content_blocks">
+            <div class="cardblock">
+                <div class="imageblock9"></div>
+                <div class="nameelement">QREP burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock10"></div>
+                <div class="nameelement">GOOD DAYS burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock11"></div>
+                <div class="nameelement">BJB burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock12"></div>
+                <div class="nameelement">SEN burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock13"></div>
+                <div class="nameelement">QR burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock14"></div>
+                <div class="nameelement" id="kenj">BQ burjeide</div>
+                <div class="coastel">18000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+        </div>
+
+
+        <div class="nameblock" >#Kenjeide</div>
+        <div class="content_blocks">
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({% static 'bastama/images/home/cat.png'%})"></div>
+                <div class="nameelement">BQ kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock16"></div>
+                <div class="nameelement">QREP kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock17"></div>
+                <div class="nameelement">GOOD DAYS kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+                <div class="cardblock">
+                <div class="imageblock18"></div>
+                <div class="nameelement">SEN kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock19"></div>
+                <div class="nameelement">MIO QR kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+           <div class="cardblock">
+                <div class="imageblock20"></div>
+                <div class="nameelement">QR kenjeide</div>
+                <div class="coastel">15000KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+<!-- ------------------------------------------------------------------------------------ -->
+{% endblock content %}

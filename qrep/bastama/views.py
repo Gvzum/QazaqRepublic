@@ -9,5 +9,8 @@ def index(request):
 def jeans(request):
     return render(request, 'bastama/jeans.html')
 
+def jeide(request):
+    return render(request, 'bastama/jeide.html')
+
 def test(request):
     return render(request, 'bastama/components/test.html')

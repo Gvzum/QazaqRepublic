@@ -818,3 +818,39 @@ header{
         height: 1500px;
     }
   }
+
+
+/* Union styles */
+
+.content_blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 60px;
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	color: #0045c0;
+}
+
+@media (max-width: 1200px) {
+    .content_blocks {
+        grid-gap: 20px;
+    }
+}
+
+/*.cardblock{*/
+/*    text-align: center;*/
+/*    position: relative;*/
+/*    display: grid;*/
+/*    grid-template-rows: max-content 200px 1fr;*/
+/*    padding-bottom: 10px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+.cardblock{
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
