@@ -9,71 +9,55 @@
 {# Block Content starting here #}
 {% block content %}
 <div class="sidebar" id="sidebar">
-        <ul class="sidebar__menu">
-            <li class="menu__item">
-                <a href="#jeide" class="menu__link">Jeans</a>
-            </li>
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">Jeans</a>
+        </li>
 
-            <li class="menu__item">
-                <a href="#burj" class="menu__link">Shalbar</a>
-            </li>
+        <li class="menu__item">
+            <a href="#burj" class="menu__link">Shalbar</a>
+        </li>
 
-            <li class="menu__item">
-                <a href="jeidee.html" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
-            </li>
-            <li class="menu__item">
-                <a href="./qosymsha.html" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
-            </li>
-            <li class="menu__item">
-                <a href="./gift.html" class="menu__link"><span style="color: yellow;">Gift</span> </a>
-            </li>
-        </ul>
-    </div>
+        <li class="menu__item">
+            <a href="{% url 'bastama:jeide' %}" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:qosymsha' %}" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:gift' %}" class="menu__link"><span style="color: yellow;">Gift</span> </a>
+        </li>
+    </ul>
+</div>
 <!-- --------------------------------------------------------------------------------------- -->
-    <main>
-        <div class="content">
-            <div class="nameblock1" id="jeide">gfvgrd</div>
-            <div class="nameblock" id="jeide">#Jeans</div>
-            <div class="content_blocks">
-                <div class="cardblock">
-                    <div class="imageblock1" ></div>
-                    <div class="nameelement">BASIC jeans</div>
-                    <div class="coastel">19500KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                <div class="cardblock">
-                    <div class="imageblock2"></div>
-                    <div class="nameelement">KEÑ jeans</div>
-                    <div class="coastel">19500KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-
+<main>
+    <div class="content">
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#Jeans</div>
+        <div class="content_blocks">
+            {% for prod in jeans %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
             </div>
-
-            <div class="nameblock" id="burj">#Shalbar</div>
-             <div class="content_blocks">
-                <div class="cardblock">
-                    <div class="imageblock9"></div>
-                    <div class="nameelement">90's shalbar</div>
-                    <div class="coastel">18000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                <div class="cardblock">
-                    <div class="imageblock10"></div>
-                    <div class="nameelement">DAMBAL shalbar</div>
-                    <div class="coastel">16000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                <div class="cardblock">
-                    <div class="imageblock11"></div>
-                    <div class="nameelement">JOGGER shalbar</div>
-                    <div class="coastel">18000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-
-             </div>
-            </div>
+            {% endfor %}
         </div>
-    </main>
+
+        <div class="nameblock" id="burj">#Shalbar</div>
+         <div class="content_blocks">
+             {% for prod in shalbars %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            {% endfor %}
+         </div>
+        </div>
+    </div>
+</main>
 
 {% endblock content %}
