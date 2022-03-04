@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{% static 'bastama/css/style.css' %}">
     {% block style %}
     {% endblock  %}
-    <title>Qazaq Republic</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 
@@ -32,6 +32,6 @@
 
 {% include './footer.html' %}
 
-        <script type="text/javascript" src="{% static 'bastama/js/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'bastama/js/script.js' %}"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.views.generic import *
 from django.shortcuts import render
 
@@ -6,7 +7,7 @@ from .models import *
 app_name = 'bastama'
 
 def index(request):
-    return render(request, 'bastama/index.html')
+    return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 #
 # def jeans(request):
 #     return render(request, 'bastama/jeans.html')
@@ -25,6 +26,14 @@ class JeansView(ListView):
         context['shalbars'] = Product.objects.filter(category__name='Shalbar')
 
         return context
+
+def get_jean(request, slug):
+    jean = Product.objects.get(slug=slug)
+    print(jean)
+    return HttpResponse('Jeans are there')
+
+# class GetOneJeansView(DetailView):
+#     model = Product
 
 class JeideView(ListView):
     model = Product
@@ -56,6 +65,7 @@ class QosymshaView(ListView):
 
         return context
 
+
 # def qosymsha(request):
 #     return render(request, 'bastama/qosymsha.html')
 
@@ -66,7 +76,14 @@ def basket(request):
     return render(request, 'bastama/basket.html')
 
 def search(request):
-    return render(request, 'bastama/search.html')
+    context = {
+        'title': 'Search'
+    }
+    if request.method == 'POST':
+        context['products'] = Product.objects.filter(name__contains=request.POST['search'], category__name__contains=request.POST['search'])
+        print(context['products'])
+
+    return render(request, 'bastama/search.html', context)
 
 def lookbook(request):
     return render(request, 'bastama/lookbook.html')
