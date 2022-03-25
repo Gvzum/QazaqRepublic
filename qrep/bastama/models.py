@@ -1,5 +1,15 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User  # Importing User model from auth app
+
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -31,8 +41,28 @@ class Favors(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
 class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False, null=True, blank=True)
+    transaction = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def get_basket_amount(self):
+        basket_order_items = self.orderitem_set.all()
+        return sum([item.quantity * item.product.price for item in basket_order_items])
+
+    @property
+    def get_basket_total(self):
+        basket_order_items = self.orderitem_set.all()
+        return sum([item.quantity for item in basket_order_items])
+
+
+class OrderItem(models.Model):
+
     # Cloth size tuples
     XSMALL = 'XS'
     SMALL = 'S'
@@ -49,17 +79,18 @@ class Order(models.Model):
         (XXLARGE, 'extra extra large'),
     ]
 
-    # State of ordering tuples
-    BASKET = 'B'
-    ORDER = 'O'
-    ORDER_TYPE = [
-        (BASKET, 'basket'),
-        (ORDER, 'order')
-    ]
-
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_now_add=True)
-    amount = models.DecimalField(max_digits=2, decimal_places=2)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
     size = models.CharField(choices=CLOTHES_SIZE, default=None, max_length=10)
-    state = models.CharField(choices=ORDER_TYPE, default=BASKET, max_length=10)
+
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    address = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.address

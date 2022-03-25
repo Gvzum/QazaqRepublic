@@ -1,6 +1,12 @@
 from django.contrib import admin
 from .models import *
 
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(Favors)
+admin.site.register(Customer)
+admin.site.register(ShippingAddress)
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']

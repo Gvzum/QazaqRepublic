@@ -5,14 +5,16 @@ app_name = 'bastama'
 
 urlpatterns = [
     path('', index, name='home'),
-    path('jeans/', JeansView.as_view(), name='jeans'),
-    path('jeans/<slug:slug>', get_jean, name='get_jean'),
+    path('category/<str:cat_name>/', show_category_products, name='category_products'),
+    path('product/<slug:slug>/', product_detail, name='product_detail'),
 
-    path('jeide/', JeideView.as_view(), name='jeide'),
-    path('qosymsha/', QosymshaView.as_view(), name='qosymsha'),
-    path('gift/', gift, name='gift'),
+    # path('jeans/', JeansView.as_view(), name='jeans'),
+    # path('jeide/', JeideView.as_view(), name='jeide'),
+    # path('qosymsha/', QosymshaView.as_view(), name='qosymsha'),
+    # path('gift/', gift, name='gift'),
     path('basket/', basket, name='basket'),
-    path('search/', search, name='search'),
     path('lookbook/', lookbook, name='lookbook'),
-    path('test/', test, name='test'),
+    path('search/', search, name='search'),
+
+    path('favorite/', get_favorite_products, name='favorites')
 ]
