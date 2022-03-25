@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 
+app_name = 'bastama'
+
 urlpatterns = [
     path('', index, name='home'),
     path('jeans/', JeansView.as_view(), name='jeans'),

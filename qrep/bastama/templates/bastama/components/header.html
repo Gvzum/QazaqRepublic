@@ -1,5 +1,12 @@
 {% load static %}
-
+<style>
+    .hello_msg{
+        font-size: 18px;
+        color: floralwhite;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+</style>
 <header>
     <div class="header_left">
         <button class="homebut">
@@ -10,6 +17,8 @@
         </div>
     </div>
     <div class="header_right">
+        <span class="hello_msg">Hello, {{request.user}}</span>
+        <span><a class="hello_msg" href="{% url 'accounts:logout' %}">Logout</a></span>
         <button class="basketbut">
             <a href="{% url 'bastama:basket' %}" title="basket" class="basketsvg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-cart3" viewBox="0 0 16 16">
@@ -24,6 +33,7 @@
             </svg>
             </a>
         </button>
+        <form action=""></form>
         <button class="hamburger" onclick="openSide()">
             <span></span>
             <span></span>
