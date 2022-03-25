@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.views.generic import *
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import SIDEBAR_SUBCATEGORY_PRODUCTS, basket_data
 
@@ -56,6 +56,7 @@ def product_detail(request, slug):
     print(product)
     return HttpResponse('There you are')
 
+@login_required(login_url='/accounts/login')
 def get_favorite_products(request):
     print(request.user)
     favs = Favors.objects.filter(customer=request.user)
