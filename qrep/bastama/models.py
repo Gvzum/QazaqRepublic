@@ -8,7 +8,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.user.username if self.user else self.name
 
 
 class Category(models.Model):
@@ -22,6 +22,7 @@ class Category(models.Model):
         ordering = ('name', )
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+
 
 class Product(models.Model):
     slug = models.SlugField(unique=True, max_length=200)
@@ -37,9 +38,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Favors(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -84,6 +87,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     size = models.CharField(choices=CLOTHES_SIZE, default=None, max_length=10)
+
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)

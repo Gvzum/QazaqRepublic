@@ -3,32 +3,43 @@ from django.views.generic import *
 from django.shortcuts import render
 
 from .models import *
-from .utils import SIDEBAR_SUBCATEGORY_PRODUCTS, basket_data
+from .utils import *
 
 app_name = 'bastama'
+
 
 def index(request):
     return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 
+
 def basket(request):
+    basket_data = get_basket_data(request)  # Getting all products from basket
+    print(basket_data)
     return render(request, 'bastama/basket.html')
+
+
+def favorite_products(request):
+    products = get_favorite_products(request)
+    print(products[0].product.name)
+    return HttpResponse('Favorite page')
+
 
 def search(request):
     context = {
         'title': 'Search'
     }
     if request.method == 'POST':
-        context['products'] = Product.objects.filter(name__contains=request.POST['search'], category__name__contains=request.POST['search'])
+        context['products'] = Product.objects.filter(name__contains=request.POST['search'],
+                                                     category__name__contains=request.POST['search'])
 
     return render(request, 'bastama/search.html', context)
+
 
 def lookbook(request):
     return render(request, 'bastama/lookbook.html')
 
-def show_category_products(request, cat_name):
 
-    basket_data(request)
-
+def category_products(request, cat_name):
     context = {}
     template_url = 'bastama/'
     products_from_subcategory = SIDEBAR_SUBCATEGORY_PRODUCTS[cat_name]
@@ -50,14 +61,12 @@ def show_category_products(request, cat_name):
 
     return render(request, template_url, context)
 
+
 def product_detail(request, slug):
     print(slug)
     product = Product.objects.get(slug=slug)
     print(product)
     return HttpResponse('There you are')
 
-def get_favorite_products(request):
-    print(request.user)
-    favs = Favors.objects.filter(customer=request.user)
-    print(favs)
-    return HttpResponse('Favorite page')
+
+
