@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.views.generic import *
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+#from ..cart import CartAddProductForm
+from cart.forms import CartAddProductForm
 
 from .models import *
 
@@ -90,3 +92,14 @@ def lookbook(request):
 
 def test(request):
     return render(request, 'bastama/components/test.html')
+
+################################################
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product,
+                                id=id,
+                                slug=slug,
+                                available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'bastama/test.html', {'product': product,
+                                 'cart_product_form': cart_product_form})
+#################################################################33

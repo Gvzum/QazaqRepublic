@@ -6,5 +6,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls')),
     path('', include('bastama.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

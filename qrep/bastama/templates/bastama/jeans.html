@@ -54,6 +54,17 @@
                 <div class="coastel">{{ prod.price | floatformat }} KZT</div>
                 <a class="button" href="basket.html">Shop Now</a>
             </div>
+             <p class="price">${{ product.price }}</p>
+<form action="{% url 'cart:cart_add' product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Add to cart">
+</form><p class="price">${{ product.price }}</p>
+<form action="{% url 'cart:cart_add' product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Add to cart">
+</form>
             {% endfor %}
          </div>
         </div>
