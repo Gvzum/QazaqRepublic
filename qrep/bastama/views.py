@@ -2,11 +2,14 @@ from django.http import HttpResponse
 from django.views.generic import *
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
+from cart.forms import CartAddProductForm
 
 from .models import *
 from .utils import *
 
 app_name = 'bastama'
+
 
 def index(request):
     if request.method == "POST":
@@ -123,3 +126,16 @@ def click_like(request, slug):
         Favors.objects.create(customer=customer, product=favorite_product)
 
     return redirect('bastama:test', slug=slug)
+
+
+
+################################################
+def product_detail_2(request, id, slug):
+    product = get_object_or_404(Product,
+                                id=id,
+                                slug=slug,
+                                available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'bastama/test.html', {'product': product,
+                                 'cart_product_form': cart_product_form})
+#################################################################3
