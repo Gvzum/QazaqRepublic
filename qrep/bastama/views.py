@@ -1,13 +1,43 @@
 from django.http import HttpResponse
 from django.views.generic import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 
 from .models import *
 
 app_name = 'bastama'
 
 def index(request):
-    return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
+    if request.method == "POST":
+        message_email = request.POST['message-email']
+        message_name = request.POST['message-name']
+        message = request.POST['message']
+
+        send_mail(
+            'message from ' + message_name + ',' + message_email,
+            message,
+            message_email,
+            ['200103223@stu.sdu.edu.kz'],
+        )
+        return redirect("bastama:home")
+
+
+      #  return render(request, 'bastama/index.html', {'message_name':message_name},{'title': 'Qazaq Republic'})
+
+    else: return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
+    if request.method == "GET":
+        message_email = request.GET['message-ems']
+
+        send_mail(
+            'subscription from ' + message_ems,
+            ['200103223@stu.sdu.edu.kz'],
+        )
+        return redirect("bastama:home")
+
+
+      #  return render(request, 'bastama/index.html', {'message_name':message_name},{'title': 'Qazaq Republic'})
+
+    else: return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 #
 # def jeans(request):
 #     return render(request, 'bastama/jeans.html')

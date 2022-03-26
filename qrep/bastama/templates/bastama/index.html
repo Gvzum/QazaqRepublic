@@ -214,34 +214,41 @@
 
 
 </div>
+        <center>
+            <h2>Thanks{{ message_name }}!
+            </h2>
+            <br><br>
+        </center>
 <div class="wues">
-    <form>
+    <form method="post">
+        {% csrf_token %}
         <div class="emailBox">
           <label for="emailAddress">Eger suraqtarınız bolsa,astyğa jazyp ketınız</label><br>
-          <input id="emailAddress" type="email" size="44" maxLength="64" style="border: 0.2px solid black;height:30px" required
+          <input id="emailAddress" type="email" name="message-email" size="44" maxLength="64" style="border: 0.2px solid black;height:30px" required
                  placeholder="Your e-mail"><br><br>
         </div>
 
         <div class="messageBox">
-          <input id="messagee" size="54"  style="border: 0.2px solid black; height: 30px;" required
+          <input id="messagee" type="text" name="message-name" size="54"  style="border: 0.2px solid black; height: 30px;" required
                     placeholder="Aty-jon"></input><br>
           <label for="message">Suraq</label><br>
-          <textarea id="message" cols="54" rows="8" style="border: 0.2px solid black;" required
+          <textarea id="message" name="message" cols="54" rows="8" style="border: 0.2px solid black;" required
                     placeholder="Bari jaqsy bolady!"></textarea>
         </div>
         <div id="app">
-            <md-button class="button-md-raised-md-primary" @click="download" style="border: 0.5px solid black; width: 60px;">Send</md-button>
+            <button type="submit" style="border: 0.5px solid black; width: 60px;">Send</button>
+
         </div>
     </form>
     <img src="{% static 'bastama/images/home/25.png' %}" alt="" style="width: 40%;">
 </div>
 
 <div class="subscribe" style="position: relative;height: 280px;">
-    <form >
+    <form method="get">
     <h1 style="padding-top: 10px;">Join to the movement</h1>
     <p>Sign up to the newsletter and be the first one to know <br>about new arrivals and special offers</p>
-    <input type="email" placeholder=" Enter your e-mail " style="border: 0.2px solid black; height: 35px; width: 350px;">
-    <input type="submit" value=" Subscribe " @click="downloadd" style="border: 0.5px solid black; background-color:black; color:white; height: 35px; width: 100px;">
+    <input type="email" name="message-ems" placeholder=" Enter your e-mail " style="border: 0.2px solid black; height: 35px; width: 350px;">
+    <button type="submit" style="border: 0.5px solid black; background-color:black; color:white; height: 35px; width: 100px;"> Subscribe </button>
 </form>
 <div class="iconss" style="margin-top:20px;">
 <a href="https://www.facebook.com/qazaq.republic.brand" class="fa fa-facebook"></a>
