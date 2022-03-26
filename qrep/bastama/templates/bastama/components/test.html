@@ -1,61 +1,23 @@
-{% extends './base.html' %}
 {% load static %}
 
 {# Configuring the style path #}
 {% block style %}
-    <link rel="stylesheet" href="{% static 'bastama/css/jeans.css' %}">
     <link rel="stylesheet" href="{% static 'bastama/css/fix.css' %}">
+    <link rel="stylesheet" href="{% static 'bastama/css/style.css' %}">
 {% endblock style %}
 
-{# Block Content starting here #}
 {% block content %}
-<div class="sidebar" id="sidebar">
-        <ul class="sidebar__menu">
-            <li class="menu__item">
-                <a href="#jeide" class="menu__link">Jeans</a>
-            </li>
-
-            <li class="menu__item">
-                <a href="#burj" class="menu__link">Shalbar</a>
-            </li>
-
-            <li class="menu__item">
-                <a href="jeidee.html" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
-            </li>
-            <li class="menu__item">
-                <a href="../qosymsha.html" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
-            </li>
-            <li class="menu__item">
-                <a href="./gift.html" class="menu__link"><span style="color: yellow;">Gift</span> </a>
-            </li>
-        </ul>
-    </div>
-<!-- --------------------------------------------------------------------------------------- -->
     <main>
         <div class="content">
-             <div class="rowblock">
-                <div class="cardblock">
-                    <div class="imageblock9"></div>
-                    <div class="nameelement">90's shalbar</div>
-                    <div class="coastel">18000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                <div class="cardblock">
-                    <div class="imageblock10"></div>
-                    <div class="nameelement">DAMBAL shalbar</div>
-                    <div class="coastel">16000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                <div class="cardblock">
-                    <div class="imageblock11"></div>
-                    <div class="nameelement">JOGGER shalbar</div>
-                    <div class="coastel">18000KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-
-             </div>
+            <h1>Order page</h1>
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ product.first_photo.url }})"></div>
+                <div class="nameelement">{{ product.name }}</div>
+                <div class="coastel">{{ product.price | floatformat }} KZT</div>
+                <a class="button" href="#">Order</a>
+                <a class="button" href="{% url 'bastama:click_like' product.slug %}">Like</a>
             </div>
         </div>
     </main>
-
+    <script src="{% static 'bastama/js/basket.js' %}"></script>
 {% endblock content %}

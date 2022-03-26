@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.views.generic import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import *
 from .utils import *
@@ -69,4 +69,27 @@ def product_detail(request, slug):
     return HttpResponse('There you are')
 
 
+def test(request, slug):
+    context = {'title': 'test'}
+    product = Product.objects.get(slug=slug)
+    print(product)
+    context['product'] = product
 
+    return render(request, 'bastama/components/test.html', context)
+
+
+def click_like(request, slug):
+    customer = get_or_create_customer(request.user)
+    favorite_product = Product.objects.get(slug=slug)
+
+    favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
+
+    print(favorite)
+    print(is_fav)
+
+    if is_fav:
+        favorite.delete()
+    else:
+        Favors.objects.create(customer=customer, product=favorite_product)
+
+    return redirect('bastama:test', slug=slug)

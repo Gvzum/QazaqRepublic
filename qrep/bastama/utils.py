@@ -1,4 +1,4 @@
-from .models import Order, Customer
+from .models import *
 
 SIDEBAR_SUBCATEGORY_PRODUCTS = {
     'jeans': [
@@ -52,3 +52,13 @@ def get_favorite_products(request):
         pass
 
     return favorite_products
+
+
+def is_favorite_of_customer(customer, favorite_product):
+    print('before customer favorite')
+    try:
+        customer_favorite = Favors.objects.get(customer=customer, product=favorite_product)
+    except:
+        customer_favorite = None
+
+    return customer_favorite, customer_favorite is not None
