@@ -1,4 +1,14 @@
 {% load static %}
+<style>
+    .hello_msg {
+        font-size: 18px;
+        color: #fcfaf8;
+        margin: 25px 20px;
+    }
+    .hello-log{
+        color: white;
+    }
+</style>
 
 <header>
     <div class="header_left">
@@ -10,6 +20,13 @@
         </div>
     </div>
     <div class="header_right">
+        {% if request.user.is_authenticated %}
+        <span class="hello_msg">Welcome, {{request.user}}</span>
+        <span class="hello_msg"><a class="hello-log" href="{% url 'accounts:logout' %}">Logout</a></span>
+        {% else %}
+        <span class="hello_msg"><a class="hello-log" href="{% url 'accounts:login' %}">Login</a></span>
+        {% endif %}
+
         <button class="basketbut">
             <a href="{% url 'bastama:basket' %}" title="basket" class="basketsvg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-cart3" viewBox="0 0 16 16">
@@ -24,6 +41,7 @@
             </svg>
             </a>
         </button>
+        <form action=""></form>
         <button class="hamburger" onclick="openSide()">
             <span></span>
             <span></span>

@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 
+app_name = 'bastama'
+
 urlpatterns = [
     path('', index, name='home'),
     path('category/<str:cat_name>/', category_products, name='category_products'),
