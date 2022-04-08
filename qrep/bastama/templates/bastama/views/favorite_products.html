@@ -1,0 +1,23 @@
+{% extends '../components/base.html' %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="content" style="padding-top: 100px;">
+        {% if favorites %}
+            {% for fav in favorites %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ fav.product.first_photo.url }})"></div>
+                <div class="nameelement">{{ fav.product.name }}</div>
+                <div class="coastel">{{ fav.product.price | floatformat }} KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h1>You don't have favorites</h1>
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}

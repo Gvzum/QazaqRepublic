@@ -1,17 +1,15 @@
 from pyexpat.errors import messages
 from django.contrib.auth import authenticate, login, logout
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
 from django.contrib import messages
 
-
-# Create your views here.
+from .forms import CreateUserForm
 from .models import *
 
 
 def registerPage(request):
+
     if request.user.is_authenticated:
         return redirect('bastama:home')
     else:

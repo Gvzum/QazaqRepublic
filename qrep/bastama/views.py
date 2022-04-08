@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .utils import *
@@ -28,7 +29,9 @@ def index(request):
 
       #  return render(request, 'bastama/index.html', {'message_name':message_name},{'title': 'Qazaq Republic'})
 
-    else: return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
+    else:
+        return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
+
     if request.method == "GET":
         message_email = request.GET['message-ems']
 
@@ -52,10 +55,13 @@ def basket(request):
     return render(request, 'bastama/basket.html')
 
 
+@login_required(login_url='/accounts/login/')
 def favorite_products(request):
-    products = get_favorite_products(request)
-    print(products[0].product.name)
-    return HttpResponse('Favorite page')
+    context = {'title': 'Favorite Products'}
+    customer, _ = Customer.objects.get_or_create(user=request.user)
+    context['favorites'] = Favors.objects.filter(customer=customer)
+
+    return render(request, 'bastama/views/favorite_products.html', context)
 
 
 def search(request):
@@ -99,7 +105,7 @@ def product_detail(request, slug):
     print(slug)
     product = Product.objects.get(slug=slug)
     print(product)
-    return HttpResponse('There you are')
+    return render(request, 'bastama/components/test.html', {'title': product.name, 'product': product})
 
 
 def test(request, slug):
@@ -112,7 +118,7 @@ def test(request, slug):
 
 
 def click_like(request, slug):
-    customer = get_or_create_customer(request.user)
+    customer, _ = Customer.objects.get_or_create(user=request.user)
     favorite_product = Product.objects.get(slug=slug)
 
     favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
@@ -125,11 +131,9 @@ def click_like(request, slug):
     else:
         Favors.objects.create(customer=customer, product=favorite_product)
 
-    return redirect('bastama:test', slug=slug)
+    return redirect('bastama:product_detail', slug=slug)
 
 
-
-################################################
 def product_detail_2(request, id, slug):
     product = get_object_or_404(Product,
                                 id=id,
@@ -138,4 +142,3 @@ def product_detail_2(request, id, slug):
     cart_product_form = CartAddProductForm()
     return render(request, 'bastama/test.html', {'product': product,
                                  'cart_product_form': cart_product_form})
-#################################################################3

@@ -1,5 +1,6 @@
 from .models import *
 
+
 SIDEBAR_SUBCATEGORY_PRODUCTS = {
     'jeans': [
         ('jeans', 'Jeans'),
@@ -20,19 +21,13 @@ SIDEBAR_SUBCATEGORY_PRODUCTS = {
         ('somkeler', 'Somke'),
     ],
     'gift': [
-
     ]
 }
 
 
-def get_or_create_customer(user):
-    customer, _ = Customer.objects.get_or_create(user=user)
-    return customer
-
-
 def get_basket_data(request):
     if request.user.is_authenticated:
-        customer = get_or_create_customer(request.user)
+        customer, _ = Customer.objects.get_or_create(user=request.user)
         print(customer)
         order, _ = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -45,7 +40,7 @@ def get_basket_data(request):
 
 def get_favorite_products(request):
     if request.user.is_authenticated:
-        customer = get_or_create_customer(request.user)
+        customer = Customer.objects.get_or_create(user=request.user)
         favorite_products = customer.favors_set.all()
     else:
         favorite_products = []
