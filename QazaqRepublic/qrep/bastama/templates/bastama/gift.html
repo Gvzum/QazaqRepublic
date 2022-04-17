@@ -1,0 +1,94 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/gift.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">GiftBox</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeans' %}" class="menu__link"><span style="color: yellow;">Jeans</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'qosymsha' %}" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeide' %}" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#GiftBox</div>
+        <div class="rowblock">
+            <div class="cardblock">
+                <div class="imageblock1" ></div>
+                <div class="nameelement">Kese, jeide</div>
+                <div class="coastel">14550KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock2"></div>
+                <div class="nameelement">Kenjeide</div>
+                <div class="coastel">16500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock3"></div>
+                <div class="nameelement">Kurtke</div>
+                <div class="coastel">25600KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock4"></div>
+                <div class="nameelement">Jempir, kese, qalpaq, belbeu</div>
+                <div class="coastel">32550KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+
+
+        </div>
+        <div class="rowblock">
+            <div class="cardblock" >
+                <div class="imageblock5"></div>
+                <div class="nameelement">2xJeide, botelke, kese</div>
+                <div class="coastel">27950KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock6"></div>
+                <div class="nameelement">Jeans, kenjeide, kepka</div>
+                <div class="coastel">38700KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock">
+                <div class="imageblock7"></div>
+                <div class="nameelement">2xJempir</div>
+                <div class="coastel">27500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            <div class="cardblock" >
+                <div class="imageblock8"></div>
+                <div class="nameelement" id="burj">2xJeide</div>
+                <div class="coastel" >22500KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ------------------------------------------------------------------------------------ -->
+
+{% endblock content %}
