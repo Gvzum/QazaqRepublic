@@ -36,32 +36,37 @@
 <main>
     <div class="content">
 
+        {% if jeideler %}
         <div class="nameblock1" id="jeide">gfvgrd</div>
         <div class="nameblock" id="jeide">#Jeideler</div>
-            <div class="content_blocks">
-                {% for jeide in jeideler %}
-                <div class="cardblock">
-                    <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
-                    <div class="nameelement">{{ jeide.name }}</div>
-                    <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
-                {% endfor %}
+        <div class="content_blocks">
+            {% for jeide in jeideler %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
+                <div class="nameelement">{{ jeide.name }}</div>
+                <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
             </div>
+            {% endfor %}
+        </div>
+        {% endif %}
 
+        {% if birjeideler %}
         <div class="nameblock" >#Burjeideler</div>
         <div class="content_blocks">
             {% for jeide in birjeideler %}
-                <div class="cardblock">
-                    <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
-                    <div class="nameelement">{{ jeide.name }}</div>
-                    <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
+                <div class="nameelement">{{ jeide.name }}</div>
+                <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
+            </div>
             {% endfor %}
         </div>
+        {% endif %}
 
 
+        {% if kenjeideler %}
         <div class="nameblock" >#Kenjeide</div>
             <div class="content_blocks">
                 {% for jeide in kenjeideler %}
@@ -69,11 +74,12 @@
                     <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
                     <div class="nameelement">{{ jeide.name }}</div>
                     <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
                 </div>
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
 
 </main>
 <!-- ------------------------------------------------------------------------------------ -->

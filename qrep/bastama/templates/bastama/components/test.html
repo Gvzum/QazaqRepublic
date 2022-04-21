@@ -10,13 +10,11 @@
     <main>
         <div class="content">
             <h1>Order page</h1>
-            <div class="cardblock">
-                <div class="imageblock15" style="background: url({{ product.first_photo.url }})"></div>
-                <div class="nameelement">{{ product.name }}</div>
-                <div class="coastel">{{ product.price | floatformat }} KZT</div>
-                <a class="button" href="#">Order</a>
-                <a class="button" href="{% url 'bastama:click_like' product.slug %}">Like</a>
-            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="button">Save</button>
+            </form>
         </div>
     </main>
     <script src="{% static 'bastama/js/basket.js' %}"></script>

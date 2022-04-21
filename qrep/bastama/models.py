@@ -8,7 +8,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.user.username if self.user else self.name
+        return self.user if self.user else self.name
 
 
 class Category(models.Model):
@@ -51,7 +51,7 @@ class Order(models.Model):
     transaction = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.pk)
 
     @property
     def get_basket_amount(self):
@@ -64,29 +64,36 @@ class Order(models.Model):
         return sum([item.quantity for item in basket_order_items])
 
 
-class OrderItem(models.Model):
+class Color(models.Model):
+    name = models.CharField(max_length=100)
+    color_code = models.CharField(max_length=100, null=True)
 
-    # Cloth size tuples
-    XSMALL = 'XS'
-    SMALL = 'S'
-    MEDIUM = 'M'
-    LARGE = 'L'
-    XLARGE = 'XL'
-    XXLARGE = 'XXL'
-    CLOTHES_SIZE = [
-        (XSMALL, 'extra small'),
-        (SMALL, 'small'),
-        (MEDIUM, 'medium'),
-        (LARGE, 'large'),
-        (XLARGE, 'extra large'),
-        (XXLARGE, 'extra extra large'),
-    ]
+    def __str__(self):
+        return self.name
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+class Size(models.Model):
+    name = models.CharField(max_length=100)
+    size_code = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.size_code
+
+
+class ProductAttribute(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=0, null=True, blank=True)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.product.name
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, null=True, blank=True)
+    product_attr = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    size = models.CharField(choices=CLOTHES_SIZE, default=None, max_length=10)
 
 
 class ShippingAddress(models.Model):

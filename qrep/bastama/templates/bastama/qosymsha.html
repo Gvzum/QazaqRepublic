@@ -54,6 +54,7 @@
 <!-- --------------------------------------------------------------------------------------- -->
 <main>
     <div class="content">
+        {% if somkeler %}
         <div class="nameblock1" id="jeide">gfvgrd</div>
         <div class="nameblock" id="jeide">#Sömke</div>
         <div class="content_blocks">
@@ -66,11 +67,13 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if kepkalar %}
         <div class="nameblock" id="kepka">#Kepka</div>
         <div class="content_blocks">
             {% for prod in kepkalar %}
@@ -82,12 +85,13 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
-
         </div>
+        {% endif %}
 
+        {% if panamalar %}
         <div class="nameblock" id="panama">#Panama</div>
         <div class="content_blocks">
             {% for prod in panamalar %}
@@ -99,11 +103,13 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if qalpaktar %}
         <div class="nameblock" id="qalpaq">#Qalpaq</div>
         <div class="content_blocks">
             {% for prod in qalpaktar %}
@@ -115,11 +121,13 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if keseler %}
         <div class="nameblock" id="kese" >#Kese</div>
         <div class="content_blocks">
             {% for prod in keseler %}
@@ -131,14 +139,13 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
-
-
-
+        {% if botelkeler %}
         <div class="nameblock" id="botelke">#Bötelke</div>
         <div class="content_blocks">
             {% for prod in botelkeler %}
@@ -150,26 +157,30 @@
                     {% endif %}
                     <div class="nameelement">{{ prod.name }}</div>
                     <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if betperdeler %}
         <div class="nameblock" id="betperde">#Betperde</div>
         <div class="content_blocks">
             {% for prod in betperdeler %}
-                <div class="cardblock">
-                    {% if prod.first_photo %}
-                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
-                    {% else %}
-                        <div class="imageblock15">No photo</div>
-                    {% endif %}
-                    <div class="nameelement">{{ prod.name }}</div>
-                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                    <a class="button" href="basket.html">Shop Now</a>
-                </div>
+            <div class="cardblock">
+                {% if prod.first_photo %}
+                    <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                {% else %}
+                    <div class="imageblock15">No photo</div>
+                {% endif %}
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+            </div>
             {% endfor %}
         </div>
+        {% endif %}
+
     </div>
 
 </main>

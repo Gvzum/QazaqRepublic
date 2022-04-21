@@ -32,6 +32,7 @@
 <!-- --------------------------------------------------------------------------------------- -->
 <main>
     <div class="content">
+        {% if jeans %}
         <div class="nameblock1" id="jeide">gfvgrd</div>
         <div class="nameblock" id="jeide">#Jeans</div>
         <div class="content_blocks">
@@ -40,11 +41,13 @@
                 <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
                 <div class="nameelement">{{ prod.name }}</div>
                 <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                <a class="button" href="basket.html">Shop Now</a>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
             </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if shalbars %}
         <div class="nameblock" id="burj">#Shalbar</div>
          <div class="content_blocks">
              {% for prod in shalbars %}
@@ -52,12 +55,13 @@
                 <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
                 <div class="nameelement">{{ prod.name }}</div>
                 <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                <a class="button" href="basket.html">Shop Now</a>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
             </div>
              <p class="price">${{ product.price }}</p>
             {% endfor %}
          </div>
         </div>
+        {% endif %}
 </main>
 
 {% endblock content %}

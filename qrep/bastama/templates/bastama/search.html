@@ -15,14 +15,14 @@
             <label id="bt" type="submit">Go</label>
         </form>
 
-        <div class="content_blocks">
+        <div class="content_blocks" style="margin-top: 20px">
         {% if products %}
             {% for prod in products %}
             <div class="cardblock">
-                {% if prod.first_photo %}
+                {% if prod.first_photo.url %}
                     <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
                 {% else %}
-                    <div class="imageblock15">No photo</div>
+                    <div class="imageblock15" style="background: url({% static 'bastama/images/default/download.jpeg' %})"></div>
                 {% endif %}
                 <div class="nameelement">{{ prod.name }}</div>
                 <div class="coastel">{{ prod.price | floatformat }} KZT</div>

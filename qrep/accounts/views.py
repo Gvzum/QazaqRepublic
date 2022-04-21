@@ -9,7 +9,6 @@ from .models import *
 
 
 def registerPage(request):
-
     if request.user.is_authenticated:
         return redirect('bastama:home')
     else:
@@ -47,8 +46,3 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('bastama:home')
-
-
-
-
-
